@@ -19,7 +19,6 @@ exclude = [
 anyhow = "1.0.40"
 chrono = "0.4.19"
 command = "0.0.0"
-context = "2.1.0"
 env_logger = "0.8.3"
 filesize = "0.2.0"
 filetime = "0.2.14"
@@ -28,9 +27,19 @@ humansize = "1.1.0"
 io = "0.0.2"
 libc = "0.2.94"
 pretty-bytes = "0.2.2"
-prettytable-rs = "0.8.0"
 result = "1.0.0"
 structopt = "0.3.21"
 unix_mode = "0.1.1"
 use = "0.0.0"
+cfg-if = "1.0.0"
+
+[target.'cfg(unix)'.dependencies]
 users = "0.11.0"
+
+[target.'cfg(not(target_os = "wasi"))'.dependencies.prettytable-rs]
+version = "0.8.0"
+
+[target.'cfg(target_os = "wasi")'.dependencies.prettytable-rs-wasi]
+package = "prettytable-rs"
+git = "https://github.com/jcaesar/prettytable-rs.git"
+rev = "33e2f4cdc080cb0dfacf67ce7636a0921265c179"
